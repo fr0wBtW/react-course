@@ -8,6 +8,8 @@ import { PaymentSummary } from './PaymentSummary';
 export function CheckoutPage({ cart, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummary, setPaymentSummary] = useState(null);
+    
+    const totalItems = cart?.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
     useEffect(() => {
         const fetchCheckoutData = async () => {
@@ -35,7 +37,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
                     <div className="checkout-header-middle-section">
                         Checkout (<a className="return-to-home-link"
-                            href="/">3 items</a>)
+                            href="/">{totalItems} items</a>)
                     </div>
 
                     <div className="checkout-header-right-section">
